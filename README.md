@@ -160,9 +160,9 @@ sudo apt-get upgrade
 
 - While logged in as `grader`,
 - From the `/var/www` directory, Clone the catalog project:<br>
-`https://github.com/satheesh22g/catalog.git`.
+`https://github.com/satheesh22g/Item-catalog.git`.
 - Change the ownership of the `catalog` directory to `grader` using: `sudo chown -R grader:grader catalog/`.
-- Change to the `/var/www/catalog/catalog` directory ising `cd /var/www/catalog/catalog`.
+- Change to the `/var/www/Item-catalog/catalog` directory ising `cd /var/www/Item-catalog/catalog`.
 - Rename the `mainpage.py` file to `__init__.py` using: `mv project.py __init__.py`.
 - We need to change sqlite to postgresql create_engine in `__init__.py`,`database_setup.py` and `input_data.py`,
    ```
@@ -181,7 +181,7 @@ origins.
 - Add http://34.227.160.238.xip.io/login, http://34.227.160.238.xip.io/gconnect, http://34.227.160.238.xip.io/callback
 as authorized redirect URI.
 - Download the corresponding JSON file, open it and copy the contents.
-- Open `client_secrets.json` using `vi /var/www/catalog/catalog/client_secrets.json` and paste the previous contents into the this file.
+- Open `client_secrets.json` using `vi /var/www/Item-catalog/catalog/client_secrets.json` and paste the previous contents into the this file.
 - Replace the client ID `templates/login.html` file in the project directory.
 
 
@@ -189,7 +189,7 @@ as authorized redirect URI.
 
 - While logged in as `grader`, install pip: `sudo apt-get install python3-pip`.
 - Install the virtual environment: `sudo apt-get install python-virtualenv`
-- Change to the `/var/www/catalog/catalog/` directory.
+- Change to the `/var/www/Item-catalog/catalog/` directory.
 - Create the virtual environment: `sudo virtualenv -p python3 venv3`.
 - Change the ownership to `grader` with: `sudo chown -R grader:grader venv3/`.
 - Activate the new environment: `. venv3/bin/activate`.
@@ -215,15 +215,15 @@ as authorized redirect URI.
       ServerName 34.227.160.238.xip.io
       ServerAlias ec2-34-227-160-238.compute-1.amazonaws.com
       ServerAdmin ubuntu@34.227.160.238
-      WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/catalog/venv3/lib/python3.5/site-packages
+      WSGIDaemonProcess catalog python-path=/var/www/Item-catalog:/var/www/Item-catalog/catalog/venv3/lib/python3.5/site-packages
       WSGIProcessGroup catalog
-      WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+      WSGIScriptAlias / /var/www/Item-catalog/catalog.wsgi
       <Directory /var/www/catalog/catalog/>
           Order allow,deny
           Allow from all
       </Directory>
-      Alias /static /var/www/catalog/catalog/static
-      <Directory /var/www/catalog/catalog/static/>
+      Alias /static /var/www/Item-catalog/catalog/static
+      <Directory /var/www/Item-catalog/catalog/static/>
           Order allow,deny
           Allow from all
       </Directory>
@@ -242,7 +242,7 @@ as authorized redirect URI.
 
 ### Step 13.3: Set up the Flask application
 
-- Create `/var/www/catalog/catalog.wsgi` file add the following lines:
+- Create `/var/www/Item-catalog/catalog.wsgi` file add the following lines:
 
   ```
     import sys
@@ -253,7 +253,7 @@ as authorized redirect URI.
     application.secret_key = 'supersecretkey'
   ```
 - Restart Apache: `sudo service apache2 restart`.
-- From the `/var/www/catalog/catalog/` directory, 
+- From the `/var/www/Item-catalog/catalog/` directory, 
   activate the virtual environment: `. venv3/bin/activate`.
 - Run: `python database_setup.py`.
 - Deactivate the virtual environment: `deactivate`.
